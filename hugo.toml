@@ -1,6 +1,6 @@
 baseURL = "http://localhost:1313/"
 languageCode = "en-us"
-title = "Rain's Site"
+title = "Rain’s Blog"
 theme = "PaperMod"
 
 [params]
