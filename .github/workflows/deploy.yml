@@ -1,0 +1,33 @@
+name: Deploy Hugo site to Aliyun
+
+on:
+  push:
+    branches:
+      - main
+      - deploy-workflow  # 为了首次测试方便
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: '0.152.2'
+          extended: true
+
+      - name: Build site
+        run: hugo --minify
+
+      - name: Deploy to Aliyun server
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: 8.137.70.84
+          username: root
+          key: ${{ secrets.DEPLOY_KEY }}
+          source: "public/*"
+          target: "/var/www/rainsite/"
