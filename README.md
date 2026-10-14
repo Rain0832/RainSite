@@ -83,6 +83,7 @@ content/posts/       文章
 content/about.md     个人主页
 content/archives.md 归档页
 hugo.toml            Hugo 站点配置和导航
+static/images/       网站静态图片和图标
 themes/PaperMod/     PaperMod 主题子模块
 wrangler.jsonc       Cloudflare Worker 静态资源配置
 ```
@@ -102,3 +103,39 @@ hugo.toml
 ```
 
 本项目保持纯静态，不包含 Node 服务、数据库或自建后端。
+
+## 图片组织
+
+普通网站图片放在 `static/images/`，在 Markdown 中使用：
+
+```markdown
+![图片说明](/images/example.jpg)
+```
+
+建议一篇文章使用一个同名目录，文章和图片放在一起：
+
+```text
+content/posts/my-article/
+├── index.md
+└── image.jpg
+```
+
+文章中使用相对路径：
+
+```markdown
+![示例图片](image.jpg)
+```
+
+创建文章时可以直接复制这个结构。不要把文章图片放在仓库根目录，也不要把构建产物放进 `public/`。
+
+## 手机发布文章
+
+目前最简单的方式是使用 GitHub 手机 App 直接编辑或新建：
+
+```text
+content/posts/文章目录/index.md
+```
+
+提交到 `main` 后，Cloudflare 会自动构建部署。也可以先在手机笔记应用中写好 Markdown，再粘贴到 GitHub。
+
+如果以后需要更像“后台编辑器”的体验，可以接入 Decap CMS 或其他 Git-based CMS，但那会增加登录、OAuth 和管理后台配置；当前纯静态方案不需要这些复杂度。
