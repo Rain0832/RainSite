@@ -19,15 +19,20 @@ summary: "Rain 的个人主页"
 
 ## 联系我
 
-
-
-[![GitHub](/images/contact/github.svg)](https://github.com/Rain0832)
-[![邮箱](/images/contact/qq_mail.svg)](mailto:2710007824@qq.com)
-[![QQ 群](/images/contact/qq_group.svg)](https://qm.qq.com/q/daYnfmKmSA) QQ 群号：747180842
-[![Bilibili](/images/contact/bilibili.svg)](https://space.bilibili.com/3546894238223014)
-[![抖音](/images/contact/douyin.svg)](https://www.douyin.com/user/MS4wLjABAAAAHz-ks1i_iHIfhEYzl1_B81ISgi4HHt5x0t7nbd3Utrg)
-[![X](/images/contact/tuite-copy.svg)](https://x.com/Rain0832)
-[![Telegram](/images/contact/telegram.svg)](https://web.telegram.org/a/#8678492192)
+<div class="contact-row">
+<a href="https://github.com/Rain0832"><img src="/images/contact/github.svg" alt="GitHub"></a>
+<a href="https://space.bilibili.com/3546894238223014"><img src="/images/contact/bilibili.svg" alt="Bilibili"></a>
+<a href="https://www.douyin.com/user/MS4wLjABAAAAHz-ks1i_iHIfhEYzl1_B81ISgi4HHt5x0t7nbd3Utrg"><img src="/images/contact/douyin.svg" alt="抖音"></a>
+</div>
+<div class="contact-row">
+<a href="https://x.com/Rain0832"><img src="/images/contact/tuite-copy.svg" alt="X"></a>
+<a href="https://web.telegram.org/a/#8678492192"><img src="/images/contact/telegram.svg" alt="Telegram"></a>
+<a href="mailto:2710007824@qq.com"><img src="/images/contact/qq_mail.svg" alt="邮箱"></a>
+</div>
+<div class="contact-row">
+<a href="https://qm.qq.com/q/daYnfmKmSA"><img src="/images/contact/qq_group.svg" alt="QQ 群"></a>
+<span>QQ群号：747180842</span>
+</div>
 
 ## 关于这个博客
 
