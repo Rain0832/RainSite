@@ -19,13 +19,15 @@ summary: "Rain 的个人主页"
 
 ## 联系我
 
-点击图标进入对应页面：
+
 
 [![GitHub](/images/contact/github.svg)](https://github.com/Rain0832)
 [![邮箱](/images/contact/qq_mail.svg)](mailto:2710007824@qq.com)
-[![QQ 群](/images/contact/qq_group.svg)](https://qm.qq.com/)
+[![QQ 群](/images/contact/qq_group.svg)](https://qm.qq.com/q/daYnfmKmSA) QQ 群号：747180842
 [![Bilibili](/images/contact/bilibili.svg)](https://space.bilibili.com/3546894238223014)
 [![抖音](/images/contact/douyin.svg)](https://www.douyin.com/user/MS4wLjABAAAAHz-ks1i_iHIfhEYzl1_B81ISgi4HHt5x0t7nbd3Utrg)
+[![X](/images/contact/tuite-copy.svg)](https://x.com/Rain0832)
+[![Telegram](/images/contact/telegram.svg)](https://web.telegram.org/a/#8678492192)
 
 ## 关于这个博客
 
