@@ -25,13 +25,13 @@ draft: false
 
 1. **买域名**：我在阿里云注册了 `rainsite.icu`。
 
-![阿里云域名信息页](/images/image3.png)
+![阿里云域名信息页](/images/aliyun-domain.png)
 2. **接入 Cloudflare**：Add a site，把域名 NS 改成 Cloudflare 给的两条 NS，等待托管生效。
 3. **准备博客资源**：本地用 Hugo 生成静态页面，打包上传到 Cloudflare Worker。
 4. **配 Worker 路由**：进入 Workers & Pages → Routes，添加 `rainsite.icu/*`，指向目标 Worker。
 5. **加 DNS 记录**：在 DNS 页添加根域名 A 记录：Type 为 `A`、Name 为 `@`、IPv4 为 `192.0.2.1`（占位 IP），代理状态设为 Proxied（橙色云）。
 
-![Cloudflare DNS 记录页](/images/image.png)
+![Cloudflare DNS 记录页](/images/cloudflare-dns.png)
 
 6. **SSL/TLS**：模式设为 `Full`，打开 **Always Use HTTPS**。
 7. **（可选）加 www**：给 `www` 加一条 CNAME，指向 `rainsite.icu`，代理同样打开。
@@ -85,4 +85,4 @@ Route 只负责 HTTP 请求转发，**不负责 DNS 解析**。没有 A 记录�
 - 加浏览量统计（Cloudflare Web Analytics）
 - 继续发文章，补充之前的经历。截止目前，这是本站第一篇文章，后续发文可能会补充之前发生过的事情；换句话说，博客发布时间大概率是事件发生时间，而不是撰写时间。
 
-![Cloudflare Analytics 数据页](/images/image2.png)
+![Cloudflare Analytics 数据页](/images/cloudflare-analytics.png)
