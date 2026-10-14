@@ -1,15 +1,24 @@
-baseURL = "http://localhost:1313/"
-languageCode = "en-us"
-title = "Rain’s Blog"
+baseURL = "https://example.pages.dev/"
+languageCode = "zh-cn"
+title = "Rain 的博客"
 theme = "PaperMod"
+enableRobotsTXT = true
 
-[params]
-  author = "Rain Si"
-  defaultTheme = "auto"  # 自动切换深浅模式
-  ShowReadingTime = true
-  ShowShareButtons = false
-  ShowPostNavLinks = true
-  ShowBreadCrumbs = true
-  ShowCodeCopyButtons = true
-  ShowToc = true
+[params.homeInfoParams]
+Title = "Rain 的博客"
+Content = "记录技术、生活与旅途。"
 
+[[menu.main]]
+name = "技术"
+url = "/categories/技术/"
+weight = 10
+
+[[menu.main]]
+name = "生活"
+url = "/categories/生活/"
+weight = 20
+
+[[menu.main]]
+name = "游记"
+url = "/categories/游记/"
+weight = 30
