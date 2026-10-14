@@ -4,6 +4,9 @@ title = "Rain 的博客"
 theme = "PaperMod"
 enableRobotsTXT = true
 
+[markup.goldmark.renderer]
+unsafe = true
+
 [params.homeInfoParams]
 Title = "Rain 的博客"
 Content = "这里记录技术实践、日常生活和一路上的思考。技术文章会整理项目与学习，生活栏目则像一本持续更新的日记。"
