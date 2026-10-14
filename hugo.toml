@@ -1,4 +1,4 @@
-baseURL = "https://example.pages.dev/"
+baseURL = "https://rainsite.icu/"
 languageCode = "zh-cn"
 title = "Rain 的博客"
 theme = "PaperMod"
@@ -6,19 +6,29 @@ enableRobotsTXT = true
 
 [params.homeInfoParams]
 Title = "Rain 的博客"
-Content = "记录技术、生活与旅途。"
+Content = "这里记录技术实践、日常生活和一路上的思考。技术文章会整理项目与学习，生活栏目则像一本持续更新的日记。"
+
+[[menu.main]]
+name = "首页"
+url = "/"
+weight = 10
 
 [[menu.main]]
 name = "技术"
 url = "/categories/技术/"
-weight = 10
+weight = 20
 
 [[menu.main]]
 name = "生活"
 url = "/categories/生活/"
-weight = 20
+weight = 30
 
 [[menu.main]]
-name = "游记"
-url = "/categories/游记/"
-weight = 30
+name = "归档"
+url = "/archives/"
+weight = 40
+
+[[menu.main]]
+name = "主页"
+url = "/about/"
+weight = 50
