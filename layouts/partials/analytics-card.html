@@ -1,0 +1,55 @@
+<section class="analytics-card" aria-labelledby="analytics-title">
+  <h2 id="analytics-title">站点数据</h2>
+  <p id="analytics-status">正在加载 Cloudflare Web Analytics…</p>
+  <div class="analytics-card__stats">
+    <div>
+      <strong id="analytics-page-views">-</strong>
+      <span>过去 24 小时页面浏览</span>
+    </div>
+  </div>
+  <div id="analytics-top-posts"></div>
+  <div id="analytics-hourly"></div>
+</section>
+<script>
+  (() => {
+    const status = document.getElementById("analytics-status");
+    const pageViews = document.getElementById("analytics-page-views");
+    const topPosts = document.getElementById("analytics-top-posts");
+    const hourly = document.getElementById("analytics-hourly");
+
+    fetch("/api/analytics")
+      .then((response) => {
+        if (!response.ok) throw new Error("analytics unavailable");
+        return response.json();
+      })
+      .then((data) => {
+        pageViews.textContent = data.last24Hours.pageViews;
+        status.textContent = `更新于 ${new Date(data.updatedAt).toLocaleString("zh-CN")}`;
+        const topHeading = document.createElement("h3");
+        topHeading.textContent = "最热门文章";
+        const topList = document.createElement("ol");
+        data.topPosts.forEach((post) => {
+          const item = document.createElement("li");
+          const link = document.createElement("a");
+          link.href = post.path;
+          link.textContent = post.path;
+          item.append(link, ` · ${post.pageViews} 次`);
+          topList.append(item);
+        });
+        topPosts.replaceChildren(topHeading, topList);
+
+        const hourlyHeading = document.createElement("h3");
+        hourlyHeading.textContent = "过去 24 小时（按小时）";
+        const hourlyList = document.createElement("ul");
+        data.hourly.forEach((item) => {
+          const row = document.createElement("li");
+          row.textContent = `${item.hour} · ${item.pageViews} 次`;
+          hourlyList.append(row);
+        });
+        hourly.replaceChildren(hourlyHeading, hourlyList);
+      })
+      .catch(() => {
+        status.textContent = "统计数据暂时不可用";
+      });
+  })();
+</script>

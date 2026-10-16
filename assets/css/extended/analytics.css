@@ -1,0 +1,29 @@
+.analytics-card {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    margin: var(--gap) 0;
+    padding: var(--gap);
+}
+
+.analytics-card h2,
+.analytics-card h3 {
+    margin: 0 0 0.6rem;
+}
+
+.analytics-card__stats {
+    margin: 1rem 0;
+}
+
+.analytics-card__stats strong {
+    display: block;
+    font-size: 2rem;
+}
+
+.analytics-card__stats span {
+    color: var(--secondary);
+}
+
+.analytics-card ol,
+.analytics-card ul {
+    margin: 0 0 1rem;
+}
