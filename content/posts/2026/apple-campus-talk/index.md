@@ -54,14 +54,6 @@ draft: false
 
 ![钢琴样式的楼梯](/images/2026/10/15/piano-stairs.jpg)
 
-<video controls preload="metadata" width="100%">
-  <source src="/videos/2026/10/15/piano-stairs-walkthrough.mp4" type="video/mp4">
-</video>
-
-<video controls preload="metadata" width="100%">
-  <source src="/videos/2026/10/15/campus-piano-stairs.mp4" type="video/mp4">
-</video>
-
 ## 逛一圈川大望江校区
 
 川大望江校区不需要预约，刷身份证就可以进入。我虽然带了身份证，但最后还是凭着青春面庞，跟着其他人一起“混”进去了。
