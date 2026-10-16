@@ -2,7 +2,7 @@
 title: "从红高路到川大：一次 Apple 校园宣讲会之行"
 date: 2026-10-15T20:30:00+08:00
 tags: ["日常", "成都", "川大", "Apple"]
-categories: ["生活"]
+categories: ["life"]
 draft: false
 ---
 

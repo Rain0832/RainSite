@@ -2,7 +2,7 @@
 title: "从域名到上线：我把 Hugo 博客挂到了自己的域名（附 7 个坑）"
 date: 2026-10-14
 tags: ["Hugo", "Cloudflare", "建站", "踩坑记录"]
-categories: ["技术"]
+categories: ["tech"]
 draft: false
 ---
 

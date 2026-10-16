@@ -18,12 +18,12 @@ weight = 10
 
 [[menu.main]]
 name = "技术"
-url = "/categories/技术/"
+url = "/categories/tech/"
 weight = 20
 
 [[menu.main]]
 name = "生活"
-url = "/categories/生活/"
+url = "/categories/life/"
 weight = 30
 
 [[menu.main]]
