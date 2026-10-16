@@ -88,13 +88,19 @@ async function queryAnalytics(token, query, variables) {
     body: JSON.stringify({ query, variables }),
   });
 
-  if (!response.ok) {
+  const responseText = await response.text();
+  let payload;
+  try {
+    payload = JSON.parse(responseText);
+  } catch {
     throw new Error(`Cloudflare Analytics API returned ${response.status}`);
   }
+  if (!response.ok) {
+    throw new Error(`Cloudflare Analytics API returned ${response.status}: ${responseText.slice(0, 500)}`);
+  }
 
-  const payload = await response.json();
   if (payload.errors?.length || !payload.data) {
-    throw new Error("Cloudflare Analytics API returned an invalid response");
+    throw new Error(`Cloudflare Analytics API returned GraphQL errors: ${JSON.stringify(payload.errors).slice(0, 500)}`);
   }
 
   return payload.data.viewer.accounts[0];
