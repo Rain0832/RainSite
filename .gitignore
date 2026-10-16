@@ -5,3 +5,4 @@ static/videos/
 .dev.vars
 .env
 .env.*
+.wrangler/
