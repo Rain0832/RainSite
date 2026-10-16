@@ -36,7 +36,7 @@ hugo server -D
 
 ## 写文章
 
-文章放在 `content/posts/` 目录中。技术文章示例：
+文章放在 `content/posts/` 下，按年份归档到子目录中。技术文章示例：
 
 ```markdown
 ---
@@ -80,10 +80,12 @@ Root directory: /
 
 ```text
 content/posts/       文章
+content/posts/2026/  2026 年文章
 content/about.md     个人主页
 content/archives.md 归档页
 hugo.toml            Hugo 站点配置和导航
 static/images/       网站静态图片和图标
+static/videos/       网站静态视频
 themes/PaperMod/     PaperMod 主题子模块
 wrangler.jsonc       Cloudflare Worker 静态资源配置
 ```
@@ -115,7 +117,7 @@ hugo.toml
 建议一篇文章使用一个同名目录，文章和图片放在一起：
 
 ```text
-content/posts/my-article/
+content/posts/2026/my-article/
 ├── index.md
 └── image.jpg
 ```
