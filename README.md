@@ -43,7 +43,7 @@ hugo server -D
 title: "文章标题"
 date: 2026-10-14T20:00:00+08:00
 tags: ["标签"]
-categories: ["技术"]
+categories: ["tech"]
 draft: false
 ---
 
@@ -53,7 +53,7 @@ draft: false
 日常日志使用：
 
 ```yaml
-categories: ["生活"]
+categories: ["life"]
 ```
 
 文章提交并推送到 `main` 后，Cloudflare 会自动构建和发布。
@@ -79,15 +79,16 @@ Root directory: /
 ## 目录说明
 
 ```text
-content/posts/       文章
-content/posts/2026/  2026 年文章
-content/about.md     个人主页
-content/archives.md 归档页
-hugo.toml            Hugo 站点配置和导航
-static/images/       网站静态图片和图标
-static/videos/       网站静态视频
-themes/PaperMod/     PaperMod 主题子模块
-wrangler.jsonc       Cloudflare Worker 静态资源配置
+content/posts/                        文章
+content/posts/2026/                   2026 年文章
+content/posts/2026/my-article/       单篇文章
+content/about.md                     个人主页
+content/archives.md                  归档页
+hugo.toml                            Hugo 站点配置和导航
+static/images/                       网站静态图片和图标
+static/images/YYYY/MM/DD/            按日期归档的文章图片
+themes/PaperMod/                     PaperMod 主题子模块
+wrangler.jsonc                       Cloudflare Worker 静态资源配置
 ```
 
 ## 内容编辑
@@ -108,24 +109,26 @@ hugo.toml
 
 ## 图片组织
 
-普通网站图片放在 `static/images/`，在 Markdown 中使用：
+普通网站图片放在 `static/images/`，按 `YYYY/MM/DD/` 归档；联系图标保留在 `static/images/contact/`。在 Markdown 中使用：
 
 ```markdown
-![图片说明](/images/example.jpg)
+![图片说明](/images/2026/10/15/meaningful-image-name.jpg)
 ```
 
-建议一篇文章使用一个同名目录，文章和图片放在一起：
+文章正文使用年份和 slug 目录，图片统一按日期目录管理：
 
 ```text
 content/posts/2026/my-article/
-├── index.md
-└── image.jpg
+└── index.md
+
+static/images/2026/10/15/
+└── meaningful-image-name.jpg
 ```
 
-文章中使用相对路径：
+文章中使用从站点根路径开始的路径：
 
 ```markdown
-![示例图片](image.jpg)
+![示例图片](/images/2026/10/15/meaningful-image-name.jpg)
 ```
 
 创建文章时可以直接复制这个结构。不要把文章图片放在仓库根目录，也不要把构建产物放进 `public/`。
