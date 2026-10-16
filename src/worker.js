@@ -2,11 +2,11 @@ const ACCOUNT_TAG = "944154643357edaea6daa0f4a6cf5882";
 const SITE_TAG = "6b70ae05f6d241ef8c2794ffaf36cbe3";
 const GRAPHQL_ENDPOINT = "https://api.cloudflare.com/client/v4/graphql";
 
-const pageViewsQuery = `
-  query PageViews($accountTag: string!, $siteTag: string!, $since: datetime!, $until: datetime!) {
+const analyticsQuery = `
+  query Analytics($accountTag: string!, $siteTag: string!, $since: datetime!, $until: datetime!) {
     viewer {
       accounts(filter: { accountTag: $accountTag }) {
-        rumPageloadEventsAdaptiveGroups(
+        pageViews: rumPageloadEventsAdaptiveGroups(
           limit: 10000
           filter: {
             siteTag: $siteTag
@@ -16,16 +16,7 @@ const pageViewsQuery = `
         ) {
           count
         }
-      }
-    }
-  }
-`;
-
-const hourlyQuery = `
-  query HourlyViews($accountTag: string!, $siteTag: string!, $since: datetime!, $until: datetime!) {
-    viewer {
-      accounts(filter: { accountTag: $accountTag }) {
-        rumPageloadEventsAdaptiveGroups(
+        hourly: rumPageloadEventsAdaptiveGroups(
           limit: 1000
           filter: {
             siteTag: $siteTag
@@ -35,24 +26,15 @@ const hourlyQuery = `
           orderBy: [datetimeHour_ASC]
           groupBy: [datetimeHour]
         ) {
-          count
-          dimensions {
-            datetimeHour
-          }
+        count
+        dimensions {
+          datetimeHour
         }
-      }
-    }
-  }
-`;
-
-const topPostsQuery = `
-  query TopPosts($accountTag: string!, $siteTag: string!, $since: datetime!, $until: datetime!) {
-    viewer {
-      accounts(filter: { accountTag: $accountTag }) {
-        rumPageloadEventsAdaptiveGroups(
-          limit: 10
-          filter: {
-            siteTag: $siteTag
+        }
+        topPosts: rumPageloadEventsAdaptiveGroups(
+        limit: 10
+        filter: {
+          siteTag: $siteTag
             datetime_geq: $since
             datetime_lt: $until
             requestPath_like: "/posts/%"
@@ -120,25 +102,25 @@ async function analyticsResponse(request, env) {
     until,
   };
 
-  const [views, hourly, topPosts] = await Promise.all([
-    queryAnalytics(env.CLOUDFLARE_API_TOKEN, pageViewsQuery, variables),
-    queryAnalytics(env.CLOUDFLARE_API_TOKEN, hourlyQuery, variables),
-    queryAnalytics(env.CLOUDFLARE_API_TOKEN, topPostsQuery, variables),
-  ]);
+  const analytics = await queryAnalytics(
+    env.CLOUDFLARE_API_TOKEN,
+    analyticsQuery,
+    variables,
+  );
 
   return Response.json({
     updatedAt: until,
     last24Hours: {
-      pageViews: views.rumPageloadEventsAdaptiveGroups.reduce(
+      pageViews: analytics.pageViews.reduce(
         (total, group) => total + group.count,
         0,
       ),
     },
-    topPosts: topPosts.rumPageloadEventsAdaptiveGroups.map((group) => ({
+    topPosts: analytics.topPosts.map((group) => ({
       path: group.dimensions.requestPath,
       pageViews: group.count,
     })),
-    hourly: hourly.rumPageloadEventsAdaptiveGroups.map((group) => ({
+    hourly: analytics.hourly.map((group) => ({
       hour: group.dimensions.datetimeHour,
       pageViews: group.count,
     })),
