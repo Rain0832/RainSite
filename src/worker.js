@@ -1,6 +1,11 @@
 const ACCOUNT_TAG = "944154643357edaea6daa0f4a6cf5882";
 const SITE_TAG = "6b70ae05f6d241ef8c2794ffaf36cbe3";
 const GRAPHQL_ENDPOINT = "https://api.cloudflare.com/client/v4/graphql";
+const POST_TITLES = {
+  "/posts/2026/apple-campus-talk/": "川大 Apple 校园宣讲会",
+  "/posts/2026/cloudflare-worker-blog-deploy/": "我的博客建站记录",
+  "/posts/2026/hammer-theory/": "锤子理论",
+};
 
 const analyticsQuery = `
   query Analytics($accountTag: string!, $siteTag: string!, $since: datetime!, $until: datetime!) {
@@ -15,20 +20,6 @@ const analyticsQuery = `
           }
         ) {
           count
-        }
-        hourly: rumPageloadEventsAdaptiveGroups(
-          limit: 1000
-          filter: {
-            siteTag: $siteTag
-            datetime_geq: $since
-            datetime_lt: $until
-          }
-          orderBy: [datetimeHour_ASC]
-        ) {
-        count
-        dimensions {
-          datetimeHour
-        }
         }
         topPosts: rumPageloadEventsAdaptiveGroups(
         limit: 10
@@ -121,10 +112,7 @@ async function analyticsResponse(request, env) {
     },
     topPosts: analytics.topPosts.map((group) => ({
       path: group.dimensions.requestPath,
-      pageViews: group.count,
-    })),
-    hourly: analytics.hourly.map((group) => ({
-      hour: group.dimensions.datetimeHour,
+      title: POST_TITLES[group.dimensions.requestPath] || group.dimensions.requestPath,
       pageViews: group.count,
     })),
   }, {

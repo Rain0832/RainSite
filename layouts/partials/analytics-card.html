@@ -1,6 +1,11 @@
 <section class="analytics-card" aria-labelledby="analytics-title">
-  <h2 id="analytics-title">站点数据</h2>
-  <p id="analytics-status">正在加载 Cloudflare Web Analytics…</p>
+  <div class="analytics-card__header">
+    <div>
+      <p class="analytics-card__eyebrow">Cloudflare Web Analytics</p>
+      <h2 id="analytics-title">站点数据</h2>
+    </div>
+    <span class="analytics-card__status" id="analytics-status">正在加载…</span>
+  </div>
   <div class="analytics-card__stats">
     <div>
       <strong id="analytics-page-views">-</strong>
@@ -8,14 +13,12 @@
     </div>
   </div>
   <div id="analytics-top-posts"></div>
-  <div id="analytics-hourly"></div>
 </section>
 <script>
   (() => {
     const status = document.getElementById("analytics-status");
     const pageViews = document.getElementById("analytics-page-views");
     const topPosts = document.getElementById("analytics-top-posts");
-    const hourly = document.getElementById("analytics-hourly");
 
     fetch("/api/analytics")
       .then((response) => {
@@ -32,21 +35,13 @@
           const item = document.createElement("li");
           const link = document.createElement("a");
           link.href = post.path;
-          link.textContent = post.path;
-          item.append(link, ` · ${post.pageViews} 次`);
+          link.textContent = post.title;
+          const views = document.createElement("span");
+          views.textContent = `${post.pageViews} 次`;
+          item.append(link, views);
           topList.append(item);
         });
         topPosts.replaceChildren(topHeading, topList);
-
-        const hourlyHeading = document.createElement("h3");
-        hourlyHeading.textContent = "过去 24 小时（按小时）";
-        const hourlyList = document.createElement("ul");
-        data.hourly.forEach((item) => {
-          const row = document.createElement("li");
-          row.textContent = `${item.hour} · ${item.pageViews} 次`;
-          hourlyList.append(row);
-        });
-        hourly.replaceChildren(hourlyHeading, hourlyList);
       })
       .catch(() => {
         status.textContent = "统计数据暂时不可用";
