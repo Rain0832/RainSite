@@ -27,11 +27,16 @@ url = "/categories/life/"
 weight = 30
 
 [[menu.main]]
+name = "思考"
+url = "/categories/thoughts/"
+weight = 40
+
+[[menu.main]]
 name = "归档"
 url = "/archives/"
-weight = 40
+weight = 50
 
 [[menu.main]]
 name = "主页"
 url = "/about/"
-weight = 50
+weight = 60
