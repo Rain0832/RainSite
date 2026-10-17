@@ -24,7 +24,6 @@ const analyticsQuery = `
             datetime_lt: $until
           }
           orderBy: [datetimeHour_ASC]
-          groupBy: [datetimeHour]
         ) {
         count
         dimensions {
@@ -40,7 +39,6 @@ const analyticsQuery = `
             requestPath_like: "/posts/%"
           }
           orderBy: [count_DESC]
-          groupBy: [requestPath]
         ) {
           count
           dimensions {
@@ -85,7 +83,12 @@ async function queryAnalytics(token, query, variables) {
     throw new Error(`Cloudflare Analytics API returned GraphQL errors: ${JSON.stringify(payload.errors).slice(0, 500)}`);
   }
 
-  return payload.data.viewer.accounts[0];
+  const account = payload.data?.viewer?.accounts?.[0];
+  if (!account) {
+    throw new Error("Cloudflare Analytics account not found");
+  }
+
+  return account;
 }
 
 async function analyticsResponse(request, env) {
